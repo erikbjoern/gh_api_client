@@ -5,8 +5,17 @@ import axios from 'axios'
 class GHSearch extends Component {
   getResults = async () => {
     let q = document.getElementById('search-input').value
-    const response = await axios.get(`/search/user&q=${q}`)
-    debugger
+    try {
+      const response = await axios.get(`/search/users?q=${q}`, {
+        headers: {
+          Accept: "application/vnd.github.v3+json"
+        } 
+      })
+      debugger
+    } catch(error) {
+
+      debugger
+    }
   }
 
   render() {
