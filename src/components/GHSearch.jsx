@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Input } from 'semantic-ui-react'
+import { Button, Input, Image, Grid } from 'semantic-ui-react'
 import axios from 'axios'
 
 class GHSearch extends Component {
@@ -26,9 +26,14 @@ class GHSearch extends Component {
     let i = 1
     let searchResult = this.state.searchResult.map((result) => {
       return (
-        <>
-          <p id={`result-${i++}`}>{result.login}</p>
-        </>
+        <Grid.Row>
+          <Grid.Column>
+            <Image size="mini" id={`img-${i++}`} src={result.avatar_url}/>
+          </Grid.Column>
+          <Grid.Column>
+            <p id={`result-${i++}`}>{result.login}</p>
+          </Grid.Column>
+        </Grid.Row>
       )
     })
 
@@ -37,7 +42,10 @@ class GHSearch extends Component {
       <>
         <Input id="search-input" type="text" name="search" placeholder="Input GH username"/>
         <Button onClick={() => {this.getResults()}} name="search">Search</Button>
-        {searchResult}
+
+        <Grid style={{paddingTop: "20px"}}>
+          {searchResult}
+        </Grid>
       </>
     )
   }
