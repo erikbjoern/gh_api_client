@@ -3,7 +3,7 @@ describe('User can search for GitHub users', () => {
     cy.server()
     cy.route({
       method: 'GET',
-      url: "https://api.github.com/search/users&q=users:barack",
+      url: "https://api.github.com/search/users?q=barack",
       response: 'fixture:search_response_barack.json'
     })
     cy.visit('/')
