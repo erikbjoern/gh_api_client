@@ -13,5 +13,7 @@ describe('User can search for GitHub users', () => {
     cy.get('input').type('Barack')
     cy.get('.button').contains('Search').click()
     cy.get('#result-1').should('contain', 'barack')
+    cy.get('#result-2').should('contain', 'PresidentObama')
+    cy.get('#result-3').should('contain', 'shentibeitaokongle')
   })
 })

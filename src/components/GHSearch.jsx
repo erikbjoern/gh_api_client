@@ -4,7 +4,7 @@ import axios from 'axios'
 
 class GHSearch extends Component {
   state = {
-    searchResult: ""
+    searchResult: []
   }
 
   getResults = async () => {
@@ -16,7 +16,6 @@ class GHSearch extends Component {
         } 
       })
       this.setState({searchResult: response.data.items})
-      debugger
     } catch(error) {
       debugger
     }
@@ -24,11 +23,21 @@ class GHSearch extends Component {
 
 
   render() {
+    let i = 1
+    let searchResult = this.state.searchResult.map((result) => {
+      return (
+        <>
+          <p id={`result-${i++}`}>{result.login}</p>
+        </>
+      )
+    })
+
 
     return (
       <>
         <Input id="search-input" type="text" name="search" placeholder="Input GH username"/>
         <Button onClick={() => {this.getResults()}} name="search">Search</Button>
+        {searchResult}
       </>
     )
   }
